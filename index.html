@@ -1,42 +1,67 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=gb18030">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>å‚³æƒ…ç•«æ„æŠ½é¡Œå™¨ + å€’æ•¸</title>
+    <style>
+        body { font-family: sans-serif; text-align: center; padding: 40px 20px; background: #f0f2f5; }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 400px; margin: 0 auto; }
+        #word { font-size: 2.5rem; color: #ff4757; margin: 20px 0; font-weight: bold; min-height: 1.5em; }
+        #timer { font-size: 4rem; color: #333; margin: 20px 0; font-weight: 100; font-family: monospace; }
+        .btn-group { display: flex; flex-direction: column; gap: 10px; }
+        button { padding: 15px; font-size: 1.1rem; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; width: 100%; }
+        .draw-btn { background: #2ed573; color: white; }
+        .timer-btn { background: #1e90ff; color: white; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        button:active { transform: scale(0.95); }
+    </style>
 </head>
 <body>
-<p class="p1"><span class="s1">&lt;!DOCTYPE html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;html&gt;</span></p>
-<p class="p1"><span class="s1">&lt;head&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; </span>&lt;title&gt;‚÷Çé®‹Òâ³éî}Æ÷&lt;/title&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; </span>&lt;style&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; </span>body { font-family: sans-serif; text-align: center; padding: 50px; background: #f0f2f5; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; </span>#word { font-size: 3rem; color: #ff4757; margin: 20px 0; min-height: 80px; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; </span>button { padding: 15px 30px; font-size: 1.2rem; background: #2ed573; color: white; border: none; border-radius: 10px; cursor: pointer; }</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; </span>&lt;/style&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/head&gt;</span></p>
-<p class="p1"><span class="s1">&lt;body&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; </span>&lt;h2&gt;”9À6 ‚÷Çé®‹Òâî}Ä¿&lt;/h2&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; </span>&lt;div id="word"&gt;üc“ôÏÂ·½°´âo³éî}&lt;/div&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; </span>&lt;button onclick="draw()"&gt;ÏÂÒ»î}&lt;/button&gt;</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; </span>&lt;script&gt;</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; </span>const pool = ["ÕäÖéÄÌ²è", "ä“èFÈË", "ÏÉÈËÕÆ", "´óĞlÏñ", "³ô¶¹¸¯", "LÊ¯²»ÉúÌ¦"];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; </span>function draw() {</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>const randomIndex = Math.floor(Math.random() * pool.length);</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span>document.getElementById('word').innerText = pool[randomIndex];</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; &nbsp; &nbsp; </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">&nbsp; &nbsp; </span>&lt;/script&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/body&gt;</span></p>
-<p class="p1"><span class="s1">&lt;/html&gt;</span></p>
+    <div class="card">
+        <h2>ğŸ¨ å‚³æƒ…ç•«æ„</h2>
+        <div id="word">æº–å‚™å¥½äº†å—ï¼Ÿ</div>
+        <div id="timer">60</div>
+        
+        <div class="btn-group">
+            <button class="draw-btn" id="drawBtn" onclick="draw()">ğŸ² æ›å€‹é¡Œç›®</button>
+            <button class="timer-btn" id="startBtn" onclick="startTimer()">â±ï¸ é–‹å§‹ç•«ç•« (60ç§’)</button>
+        </div>
+    </div>
+
+    <script>
+        const pool = ["çç å¥¶èŒ¶", "é‹¼éµäºº", "ä»™äººæŒ", "å¤§è¡›åƒ", "è‡­è±†è…", "é›²éœ„é£›è»Š", "é•·é ¸é¹¿", "èœ˜è››ä¿ ", "è‡ªç”±å¥³ç¥", "è›‹é¤…", "è–èª•è€äºº", "é¦¬æ¡¶åˆ·", "å¤ªç©ºäºº"];
+        let countdown;
+        let timeLeft = 60;
+
+        function draw() {
+            // é‡è¨­è¨ˆæ™‚å™¨
+            clearInterval(countdown);
+            timeLeft = 60;
+            document.getElementById('timer').innerText = timeLeft;
+            document.getElementById('timer').style.color = "#333";
+            document.getElementById('startBtn').disabled = false;
+
+            // éš¨æ©ŸæŠ½é¡Œ
+            const randomIndex = Math.floor(Math.random() * pool.length);
+            document.getElementById('word').innerText = pool[randomIndex];
+        }
+
+        function startTimer() {
+            document.getElementById('startBtn').disabled = true;
+            document.getElementById('timer').style.color = "#ff4757";
+            
+            countdown = setInterval(() => {
+                timeLeft--;
+                document.getElementById('timer').innerText = timeLeft;
+
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    document.getElementById('word').innerText = "â° æ™‚é–“åˆ°ï¼";
+                    alert("å—¶å—¶å—¶ï¼è«‹åœç­†ä¸¦å‚³çµ¦ä¸‹ä¸€å€‹äººï¼");
+                }
+            }, 1000);
+        }
+    </script>
 </body>
 </html>

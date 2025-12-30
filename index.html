@@ -3,64 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>傳情畫意抽題器 + 倒數</title>
+    <title>傳情畫意兒童語音版</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding: 40px 20px; background: #f0f2f5; }
-        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 400px; margin: 0 auto; }
-        #word { font-size: 2.5rem; color: #ff4757; margin: 20px 0; font-weight: bold; min-height: 1.5em; }
-        #timer { font-size: 4rem; color: #333; margin: 20px 0; font-weight: 100; font-family: monospace; }
-        .btn-group { display: flex; flex-direction: column; gap: 10px; }
-        button { padding: 15px; font-size: 1.1rem; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; width: 100%; }
-        .draw-btn { background: #2ed573; color: white; }
-        .timer-btn { background: #1e90ff; color: white; }
-        button:disabled { background: #ccc; cursor: not-allowed; }
+        body { font-family: sans-serif; text-align: center; padding: 40px 20px; background: #fff9e6; }
+        .card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); max-width: 400px; margin: 0 auto; border: 4px solid #ffcc00; }
+        #word { font-size: 3rem; color: #ff6b6b; margin: 20px 0; font-weight: bold; }
+        .btn-group { display: flex; flex-direction: column; gap: 15px; }
+        button { padding: 20px; font-size: 1.3rem; border: none; border-radius: 50px; cursor: pointer; transition: 0.3s; width: 100%; font-weight: bold; }
+        .draw-btn { background: #ffcc00; color: #5d4037; }
+        .audio-btn { background: #4ecdc4; color: white; }
         button:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
     <div class="card">
-        <h2>🎨 傳情畫意</h2>
-        <div id="word">準備好了嗎？</div>
-        <div id="timer">60</div>
+        <h2>🐥 小朋友抽題器</h2>
+        <div id="word">按按鈕抽題</div>
         
         <div class="btn-group">
-            <button class="draw-btn" id="drawBtn" onclick="draw()">🎲 換個題目</button>
-            <button class="timer-btn" id="startBtn" onclick="startTimer()">⏱️ 開始畫畫 (60秒)</button>
+            <button class="draw-btn" onclick="draw()">🎲 換一個題目</button>
+            <button class="audio-btn" onclick="speak()">🔊 聽聽看是什麼</button>
         </div>
     </div>
 
     <script>
-        const pool = ["珍珠奶茶", "鋼鐵人", "仙人掌", "大衛像", "臭豆腐", "雲霄飛車", "長頸鹿", "蜘蛛俠", "自由女神", "蛋餅", "聖誕老人", "馬桶刷", "太空人"];
-        let countdown;
-        let timeLeft = 60;
+        const pool = ["可愛的小貓", "大象", "紅色的蘋果", "西瓜", "長頸鹿", "冰淇淋", "太陽公公", "飛機", "救護車", "佩佩豬"];
+        let currentWord = "";
 
         function draw() {
-            // 重設計時器
-            clearInterval(countdown);
-            timeLeft = 60;
-            document.getElementById('timer').innerText = timeLeft;
-            document.getElementById('timer').style.color = "#333";
-            document.getElementById('startBtn').disabled = false;
-
-            // 隨機抽題
             const randomIndex = Math.floor(Math.random() * pool.length);
-            document.getElementById('word').innerText = pool[randomIndex];
+            currentWord = pool[randomIndex];
+            document.getElementById('word').innerText = currentWord;
+            // 抽題時自動讀一次
+            speak();
         }
 
-        function startTimer() {
-            document.getElementById('startBtn').disabled = true;
-            document.getElementById('timer').style.color = "#ff4757";
+        function speak() {
+            if (!currentWord) return;
             
-            countdown = setInterval(() => {
-                timeLeft--;
-                document.getElementById('timer').innerText = timeLeft;
+            // 停止目前正在說的話
+            window.speechSynthesis.cancel();
 
-                if (timeLeft <= 0) {
-                    clearInterval(countdown);
-                    document.getElementById('word').innerText = "⏰ 時間到！";
-                    alert("嗶嗶嗶！請停筆並傳給下一個人！");
-                }
-            }, 1000);
+            const msg = new SpeechSynthesisUtterance();
+            msg.text = currentWord;
+            msg.lang = 'zh-TW'; // 設定台灣中文
+            msg.rate = 0.8;      // 語速稍微慢一點，適合小朋友
+            msg.pitch = 1.2;     // 音調高一點，聽起來比較親切
+            
+            window.speechSynthesis.speak(msg);
         }
     </script>
 </body>
